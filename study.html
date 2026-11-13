@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StudySphere — Your study space</title>
+<style>
+:root{--bg:#fcfaff;--card:#fff;--ink:#30283d;--muted:#827a90;--purple:#8054c7;--pale:#f0e8fc;--line:#ece6f3;--peach:#fff0e6;--shadow:0 14px 40px #40255e14}
+:root.dark{--bg:#191522;--card:#241d30;--ink:#f5efff;--muted:#b7abc7;--purple:#c09bea;--pale:#382b4b;--line:#3d334a;--peach:#3b2b2a;--shadow:0 14px 40px #0004}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 Arial,sans-serif;transition:.2s}button,input,select{font:inherit}button,a{touch-action:manipulation}a{color:var(--purple);text-decoration:none}button{cursor:pointer;color:inherit}.topbar{height:72px;padding:0 max(24px,calc((100vw - 1180px)/2));display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:10}.brand{font-size:20px;font-weight:800;color:var(--ink)}.brand b{color:var(--purple)}.nav{display:flex;gap:20px;align-items:center}.nav a,.nav button{font-size:13px;font-weight:600}.nav button,.menu{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 12px;color:var(--purple)}.menu{display:none}.page{max-width:1180px;margin:auto;padding:36px 24px 70px}.view[hidden]{display:none!important}.eyebrow{color:var(--purple);font-weight:700;font-size:10px;letter-spacing:1.4px}.hero{min-height:520px;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}.hero h1{font-size:clamp(42px,6vw,68px);line-height:1.07;letter-spacing:-3px;margin:17px 0}.shine{color:var(--purple)}.lead{max-width:490px;color:var(--muted);line-height:1.8}.actions{display:flex;gap:12px;margin:25px 0}.btn{display:inline-flex;align-items:center;gap:10px;border:0;border-radius:11px;padding:12px 18px;background:linear-gradient(130deg,#966bd0,#7048b4);color:#fff;font-weight:700;font-size:13px;box-shadow:0 8px 20px #8054c733}.btn:hover{filter:brightness(1.06);transform:translateY(-1px)}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}.btn.alt{background:var(--card);border:1px solid var(--line);color:var(--ink);box-shadow:none}.art{min-height:340px;border-radius:48% 52% 55% 45%;background:radial-gradient(circle,#e5d5fb,#f8f3ff 65%,transparent 68%);display:grid;place-items:center;position:relative}.planner{width:min(340px,90%);background:var(--card);padding:25px;border-radius:20px;box-shadow:var(--shadow);transform:rotate(-3deg)}.planner h2{font-size:22px;line-height:1.25}.planner-row{border-top:1px solid var(--line);padding:11px 0;font-size:12px}.planner-row small{display:block;color:var(--muted)}.features{padding:35px 0}.features h2{text-align:center;font-size:32px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature{padding:23px;border-radius:16px;min-height:185px;background:var(--pale)}.feature:nth-child(2){background:var(--peach)}.feature:nth-child(3){background:#e8f0ff}.feature h3{margin:12px 0 5px}.feature p{font-size:13px;color:var(--muted)}.cta{margin:30px 0;padding:28px;border-radius:18px;background:var(--pale);display:flex;align-items:center;justify-content:space-between;gap:18px}.auth{max-width:920px;margin:35px auto;display:grid;grid-template-columns:.8fr 1.2fr;gap:35px;align-items:center}.auth-aside{padding:20px}.auth-aside h1{font-size:40px;line-height:1.15}.auth-aside p{color:var(--muted)}.formbox,.panel{padding:25px;border-radius:17px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}.formbox h2{margin:0 0 5px}.sub{font-size:12px;color:var(--muted);margin-top:0}.fields{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.field{display:block;margin:9px 0;font-size:12px;font-weight:700}.field input,.field select{display:block;width:100%;height:42px;margin-top:5px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink);padding:0 11px;font-size:13px;outline:none}.field input:focus,.field select:focus{border-color:var(--purple);box-shadow:0 0 0 3px #8054c71a}.field input.invalid,.field select.invalid{border-color:#d34d60}.field input.valid,.field select.valid{border-color:#4aab76}.error-msg{display:block;min-height:0;color:#c33c52;font-weight:400;font-size:10px}.error-msg:not(:empty){min-height:14px}.hint{display:block;color:var(--muted);font-size:10px;font-weight:400}.wide{grid-column:1/-1}.full{width:100%;justify-content:center;margin-top:12px}.formfoot{text-align:center;color:var(--muted);font-size:12px}.terms{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--muted);margin-top:14px}.terms input{accent-color:var(--purple);margin-top:4px}.alert{padding:10px;background:#fff0f1;color:#a73243;border-radius:9px;font-size:12px;margin:12px 0}.alert:empty{display:none}.password{display:flex}.password input{flex:1}.password button{height:42px;margin-top:5px;border:1px solid var(--line);background:var(--card);border-radius:9px;margin-left:5px}.dashboard{display:grid;grid-template-columns:250px 1fr 300px;gap:18px;align-items:start}.sidebar,.right{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:17px;min-height:75vh}.sidebar{display:flex;flex-direction:column}.sidebar h3{font-size:14px}.sidebar a{padding:9px;color:var(--muted);font-size:13px;border-radius:8px}.sidebar a:hover{background:var(--pale);color:var(--purple)}.reminder{margin-top:auto;padding:13px;background:var(--pale);border-radius:10px;font-size:12px}.dashmain{min-width:0}.dashmain h1{font-size:23px;margin:5px 0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.stat{padding:14px;background:var(--pale);border-radius:12px;font-size:11px;color:var(--muted)}.stat:nth-child(2){background:var(--peach)}.stat b{display:block;color:var(--ink);font-size:21px}.tasklist{padding:0;list-style:none}.tasklist li{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding:10px 0;font-size:12px}.tasklist input{accent-color:var(--purple)}.tasklist li.done span{text-decoration:line-through;opacity:.55}.addtask{display:flex;gap:7px}.addtask input{flex:1;min-width:0;border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--bg);color:var(--ink)}.addtask button{border:0;border-radius:8px;background:var(--pale);color:var(--purple);font-size:20px}.tool{margin:12px 0}.timer{font-size:28px;text-align:center;margin:15px}.calc-display{width:100%;height:40px;text-align:right;background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:8px;margin:10px 0}.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}.keys button{height:35px;border:0;border-radius:7px;background:var(--pale)}.keys button[data-key="="]{background:var(--purple);color:#fff}.keys button[data-key="C"]{background:var(--peach)}.quote{font-size:13px;color:var(--muted)}.chat-fab{position:fixed;bottom:20px;right:20px;width:54px;height:54px;border:0;border-radius:18px;background:var(--purple);color:white;font-size:22px;box-shadow:var(--shadow);z-index:20}.chat{position:fixed;right:20px;bottom:85px;width:310px;height:380px;max-height:70vh;background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow);z-index:20;display:flex;flex-direction:column;overflow:hidden}.chat[hidden]{display:none}.chathead{background:var(--purple);color:#fff;padding:12px;font-weight:700}.chatlog{padding:11px;flex:1;overflow:auto;display:flex;flex-direction:column;gap:8px}.msg{max-width:85%;padding:9px 11px;border-radius:11px;background:var(--pale);font-size:12px}.user-msg{align-self:flex-end;background:var(--purple);color:#fff}.bot-msg{align-self:flex-start}.chatform{display:flex;padding:9px;border-top:1px solid var(--line);gap:6px}.chatform input{min-width:0;flex:1;border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--bg);color:var(--ink)}.chatform button{border:0;border-radius:8px;background:var(--purple);color:#fff}.sr{position:absolute;left:-9999px}
+@media(max-width:767px){.topbar{height:64px;padding:0 16px}.menu{display:block;margin-left:auto}.nav{display:none;position:absolute;right:12px;top:58px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch;gap:10px}.nav.open{display:flex}.hero{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding-top:35px}.hero h1{font-size:48px}.art{min-height:300px}.cards{grid-template-columns:1fr}.cta{display:block}.auth{display:flex;flex-direction:column;gap:12px;margin:20px auto}.auth-aside{padding:10px}.auth-aside h1{font-size:32px;margin:8px 0}.formbox{width:100%;padding:19px}.fields{grid-template-columns:1fr}.wide{grid-column:auto}.dashboard{display:flex;flex-direction:column}.sidebar{position:fixed;z-index:15;left:0;top:64px;bottom:0;width:min(290px,85vw);min-height:0;transform:translateX(-110%);transition:.2s;border-radius:0 15px 15px 0;box-shadow:var(--shadow)}.sidebar.open{transform:translateX(0)}.dashmain,.right{width:100%}.right{min-height:0}.stats{grid-template-columns:1fr 1fr}.stat:last-child{grid-column:span 2}.chat{right:12px;bottom:78px;width:min(310px,calc(100vw - 24px))}}
+@media(max-width:390px){.actions{flex-direction:column;align-items:stretch}.hero h1{font-size:41px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" data-go="landing">Study<b>Sphere</b></a>
+  <button class="menu" id="menu" aria-label="Open navigation" aria-expanded="false">☰</button>
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <a href="#" data-go="landing">Home</a>
+    <a href="#" data-go="dashboard">Dashboard</a>
+    <a href="#" data-go="register">Register</a>
+    <a href="#" data-go="signin">Sign in</a>
+    <button id="theme">☾ Theme</button>
+  </nav>
+</header>
+
+<main>
+<section class="view page" id="landing">
+  <div class="hero">
+    <div><span class="eyebrow">YOUR SPACE TO MAKE PROGRESS</span><h1>Small steps.<br><span class="shine">Brighter futures.</span></h1>
+      <p class="lead">Bring your study plans, daily focus and learning tools together in one thoughtful space. Less clutter, more room to grow.</p>
+      <div class="actions"><button class="btn" data-go="register">Start your journey ↗</button><button class="btn alt" data-go="dashboard">Explore dashboard</button></div>
+      <p class="sub">✦ A calmer way to plan, focus and learn.</p>
+    </div>
+    <div class="art"><div class="planner"><span class="eyebrow">YOUR WEEK, IN VIEW</span><h2>A gentle plan<br>goes a long way.</h2><div class="planner-row">✦ Web Technology <small>Read chapter 04</small></div><div class="planner-row">◷ Deep focus <small>25 minute session</small></div><div class="planner-row">✓ Weekly momentum: 72%</div></div></div>
+  </div>
+  <div class="features"><h2>Your learning world, <span class="shine">in one place.</span></h2><div class="cards">
+    <article class="feature"><span>▤ PLAN</span><h3>Plan with purpose</h3><p>Turn your goals into a weekly rhythm that feels doable.</p></article>
+    <article class="feature"><span>◉ FOCUS</span><h3>Find your flow</h3><p>Make space for focused sessions and celebrate small wins.</p></article>
+    <article class="feature"><span>✧ GROW</span><h3>See your progress</h3><p>Notice how far you have come, one session at a time.</p></article>
+  </div></div>
+  <div class="cta"><div><b>Ready to make today count?</b><br><span class="sub">Build a study routine that works for you.</span></div><button class="btn" data-go="signup">Create your free account ↗</button></div>
+</section>
+
+<section class="view page" id="register" hidden>
+  <div class="auth"><aside class="auth-aside"><span class="eyebrow">A FRESH START</span><h1>Make space for <span class="shine">what's next.</span></h1><p>Your study life, with a little more breathing room.</p></aside>
+  <section class="formbox"><h2>Create your profile</h2><p class="sub">All fields are required.</p>
+    <form id="registerForm" novalidate><div class="fields">
+      <label class="field">Full Name<input name="fullName" autocomplete="name" required><span class="error-msg"></span></label>
+      <label class="field">Employee / Register ID<input name="empId" required><span class="error-msg"></span></label>
+      <label class="field">Email Address<input name="email" type="email" autocomplete="email" required><span class="error-msg"></span></label>
+      <label class="field">Mobile Number<input name="mobile" type="tel" inputmode="numeric" required><span class="error-msg"></span></label>
+      <label class="field">Division<select name="dept" required><option value="">Choose division</option><option>CSE</option><option>IT</option><option>ECE</option><option>EEE</option><option>Mechanical</option><option>Civil</option><option>Other</option></select><span class="error-msg"></span></label>
+      <label class="field">Password<input name="password" type="password" autocomplete="new-password" required><span class="hint">8+ chars: uppercase, lowercase, number and @$!%*?&amp;</span><span class="error-msg"></span></label>
+      <label class="field wide">Confirm Password<input name="confirmPassword" type="password" autocomplete="new-password" required><span class="error-msg"></span></label>
+    </div><button class="btn full" id="registerButton" disabled>Create my profile ↗</button></form>
+    <p class="formfoot">Already have an account? <a href="#" data-go="signin">Sign in</a></p>
+  </section></div>
+</section>
+
+<section class="view page" id="signup" hidden>
+  <div class="auth"><aside class="auth-aside"><span class="eyebrow">JOIN STUDYSPHERE</span><h1>Make learning feel like <span class="shine">you.</span></h1><p>Create an account and make room for your next big idea.</p></aside>
+  <section class="formbox"><h2>Start with a little yes.</h2><p class="sub">Create your StudySphere account.</p>
+    <form id="signupForm" novalidate>
+      <label class="field">Email Address<input name="email" type="email" required><span class="error-msg"></span></label>
+      <label class="field">Password<input name="password" type="password" required><span class="hint">8+ characters, upper/lowercase, number and symbol.</span><span class="error-msg"></span></label>
+      <label class="terms"><input type="checkbox" name="terms"><span>I agree to the <a href="#terms">Terms of Service</a> and Privacy Policy.</span></label><span class="error-msg" id="termsError"></span>
+      <button class="btn full">Create account ↗</button>
+    </form><p class="formfoot">Already joined? <a href="#" data-go="signin">Sign in</a></p>
+  </section></div>
+</section>
+
+<section class="view page" id="signin" hidden>
+  <div class="auth"><aside class="auth-aside"><span class="eyebrow">WELCOME BACK</span><h1>Your space is <span class="shine">waiting.</span></h1><p>You showed up. That matters. Pick up right where you left off.</p></aside>
+  <section class="formbox"><h2>Sign in</h2><p class="sub">Your learning space is ready.</p><div id="signinAlert" class="alert" role="alert"></div>
+    <form id="signinForm" novalidate>
+      <label class="field">Email Address<input name="email" type="email" autocomplete="email"><span class="error-msg"></span></label>
+      <label class="field">Password<div class="password"><input name="password" type="password" autocomplete="current-password"><button id="showPassword" type="button" aria-label="Show password">◉</button></div><span class="error-msg"></span></label>
+      <button class="btn full">Sign in ↗</button>
+    </form><p class="formfoot">New to StudySphere? <a href="#" data-go="signup">Create an account</a></p>
+  </section></div>
+</section>
+
+<section class="view page" id="dashboard" hidden>
+  <div class="dashboard">
+    <aside class="sidebar" id="sidebar"><h3>✦ Your study space</h3><a href="#overview">▦ Overview</a><a href="#tasks">▤ Study planner</a><a href="#tools">◉ Focus &amp; tools</a><a href="#notes">⌁ Learning notes</a><div class="reminder">✳ <b>Gentle reminder</b><br>Progress grows one small step at a time.</div></aside>
+    <section class="dashmain" id="overview"><span class="eyebrow">YOUR SPACE TO GROW</span><h1>Good to see you, <span id="firstName">friend</span> ✦</h1><p class="sub">Every little step adds up. Here's your study space.</p>
+      <div class="stats"><div class="stat">FOCUS THIS WEEK<b>4.5 hrs</b></div><div class="stat">TASKS COMPLETED<b id="taskCount">0 / 5</b></div><div class="stat">STUDY STREAK<b>3 days</b></div></div>
+      <section class="panel" id="tasks"><span class="eyebrow">YOUR PLAN</span><h2>Today's gentle list</h2>
+        <ul class="tasklist" id="taskList">
+          <li><input type="checkbox"><span>Review CSS Grid notes · Web Technology</span></li>
+          <li><input type="checkbox"><span>Practice JavaScript arrays · 45 min</span></li>
+          <li><input type="checkbox"><span>Read chapter 04 · Data Structures</span></li>
+          <li><input type="checkbox"><span>Sketch project wireframe · Web Technology</span></li>
+          <li><input type="checkbox"><span>Take a screen break · 10 min</span></li>
+        </ul>
+        <form class="addtask" id="addTask"><input id="newTask" placeholder="Add a little task…" maxlength="70"><button aria-label="Add task">＋</button></form>
+      </section>
+      <section class="panel tool" id="notes"><span class="eyebrow">A THOUGHT TO KEEP</span><p class="quote">“It always seems impossible until it's done.”</p><small class="sub">Make room for the small steps. They matter.</small></section>
+    </section>
+    <aside class="right" id="tools"><span class="eyebrow">A MOMENT FOR YOU</span><h2>Focus timer</h2><div class="timer" id="timer">25:00</div><button class="btn full" id="timerStart">Start focus</button><button class="btn alt full" id="timerReset">Reset timer</button>
+      <hr style="border:0;border-top:1px solid var(--line);margin:22px 0"><span class="eyebrow">QUICK MATH</span><h2>Little calculator</h2><input class="calc-display" id="display" value="0" readonly aria-label="Calculator display"><div class="keys">
+        <button data-key="C">C</button><button data-key="/">÷</button><button data-key="*">×</button><button data-key="-">−</button>
+        <button data-key="7">7</button><button data-key="8">8</button><button data-key="9">9</button><button data-key="+">+</button>
+        <button data-key="4">4</button><button data-key="5">5</button><button data-key="6">6</button><button data-key=".">.</button>
+        <button data-key="1">1</button><button data-key="2">2</button><button data-key="3">3</button><button data-key="=">=</button>
+        <button data-key="0" style="grid-column:span 3">0</button>
+      </div>
+    </aside>
+  </div>
+</section>
+</main>
+
+<div class="chat" id="chat" hidden>
+  <div class="chathead">✦ Study buddy <button id="closeChat" style="float:right;background:none;border:0;color:white;font-size:18px" aria-label="Close chat">×</button><small style="display:block;font-weight:400">Here to help</small></div>
+  <div class="chatlog" id="chatLog" role="log" aria-live="polite"><div class="msg bot-msg">Hi! I'm your StudySphere study buddy. Ask me about planning, focus, motivation or breaks.</div></div>
+  <form class="chatform" id="chatForm"><input id="chatInput" placeholder="Type a message…" maxlength="240" aria-label="Your message"><button aria-label="Send message">➤</button></form>
+</div>
+<button class="chat-fab" id="chatFab" aria-label="Open study buddy" aria-expanded="false">✦</button>
+
+<script>
+/* Page navigation and mobile menu */
+function showPage(id){
+  document.querySelectorAll(".view").forEach(page=>page.hidden=page.id!==id);
+  document.getElementById("nav").classList.remove("open");
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("menu").setAttribute("aria-expanded","false");
+  window.scrollTo(0,0);
+}
+document.addEventListener("click",event=>{
+  const link=event.target.closest("[data-go]");
+  if(link){event.preventDefault();showPage(link.dataset.go);}
+});
+document.getElementById("menu").addEventListener("click",event=>{
+  const dashboard=document.getElementById("dashboard");
+  const sidebar=document.getElementById("sidebar");
+  if(!dashboard.hidden){sidebar.classList.toggle("open");event.currentTarget.setAttribute("aria-expanded",String(sidebar.classList.contains("open")));}
+  else{document.getElementById("nav").classList.toggle("open");event.currentTarget.setAttribute("aria-expanded",String(document.getElementById("nav").classList.contains("open")));}
+});
+
+/* Light and dark themes persist between visits */
+const themeButton=document.getElementById("theme");
+function updateThemeButton(){themeButton.textContent=document.documentElement.classList.contains("dark")?"☀ Light theme":"☾ Theme";}
+if(localStorage.getItem("studysphere-theme")==="dark")document.documentElement.classList.add("dark");
+updateThemeButton();
+themeButton.addEventListener("click",()=>{
+  document.documentElement.classList.toggle("dark");
+  localStorage.setItem("studysphere-theme",document.documentElement.classList.contains("dark")?"dark":"light");
+  updateThemeButton();
+});
+
+/* Required registration patterns */
+const patterns={
+  fullName:/^[a-zA-Z\s]{2,50}$/,
+  empId:/^[A-Z0-9]{6,12}$/i,
+  email:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+  mobile:/^[6-9]\d{9}$/,
+  password:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+};
+const errorText={
+  fullName:"Use 2–50 letters and spaces only.",
+  empId:"Use 6–12 letters or numbers.",
+  email:"Enter a valid email address.",
+  mobile:"Enter 10 digits starting with 6–9.",
+  dept:"Choose your division.",
+  password:"Use 8+ characters with uppercase, lowercase, number and symbol.",
+  confirmPassword:"Passwords must match."
+};
+function checkField(input,show=true){
+  const name=input.name,value=input.value;
+  let valid=name==="dept"?value!=="":name==="confirmPassword"?value!==""&&value===input.form.elements.password.value:name==="password"?patterns.password.test(value):patterns[name]?.test(value)??false;
+  if(show){input.classList.toggle("valid",valid);input.classList.toggle("invalid",!valid);input.setAttribute("aria-invalid",String(!valid));input.closest(".field").querySelector(".error-msg").textContent=valid?"":errorText[name];}
+  return valid;
+}
+const reg=document.getElementById("registerForm");
+const regFields=[...reg.querySelectorAll("input,select")];
+const regButton=document.getElementById("registerButton");
+function updateRegButton(){regButton.disabled=!regFields.every(field=>checkField(field,false));}
+regFields.forEach(field=>{
+  field.addEventListener("blur",()=>{checkField(field);if(field.name==="password"){const confirm=reg.elements.confirmPassword;if(confirm.value)checkField(confirm);}updateRegButton();});
+  field.addEventListener("input",()=>{if(field.classList.contains("valid")||field.classList.contains("invalid"))checkField(field);if(field.name==="password"&&reg.elements.confirmPassword.value)checkField(reg.elements.confirmPassword);updateRegButton();});
+  field.addEventListener("change",updateRegButton);
+});
+reg.addEventListener("submit",event=>{
+  event.preventDefault();
+  const valid=regFields.map(field=>checkField(field)).every(Boolean);
+  updateRegButton();
+  if(!valid){regFields.find(field=>!checkField(field,false))?.focus();return;}
+  const data=new FormData(reg);
+  const profile={name:data.get("fullName"),email:data.get("email"),division:data.get("dept")};
+  localStorage.setItem("studysphere-profile",JSON.stringify(profile));
+  localStorage.setItem("studysphere-demo-credentials",JSON.stringify({email:data.get("email"),password:data.get("password")}));
+  showPage("dashboard");setWelcome();
+});
+updateRegButton();
+
+/* Sign-up form and required terms checkbox */
+const signup=document.getElementById("signupForm");
+signup.addEventListener("submit",event=>{
+  event.preventDefault();
+  const email=signup.elements.email,password=signup.elements.password,terms=signup.elements.terms;
+  const emailOk=patterns.email.test(email.value.trim()),passwordOk=patterns.password.test(password.value);
+  email.classList.toggle("invalid",!emailOk);email.classList.toggle("valid",emailOk);
+  password.classList.toggle("invalid",!passwordOk);password.classList.toggle("valid",passwordOk);
+  email.closest(".field").querySelector(".error-msg").textContent=emailOk?"":errorText.email;
+  password.closest(".field").querySelector(".error-msg").textContent=passwordOk?"":errorText.password;
+  document.getElementById("termsError").textContent=terms.checked?"":"Please agree to continue.";
+  if(!emailOk||!passwordOk||!terms.checked)return;
+  localStorage.setItem("studysphere-demo-credentials",JSON.stringify({email:email.value.trim(),password:password.value}));
+  localStorage.setItem("studysphere-profile",JSON.stringify({name:email.value.split("@")[0],email:email.value.trim()}));
+  showPage("dashboard");setWelcome();
+});
+
+/* Sign-in format alert and show/hide password button */
+const signin=document.getElementById("signinForm");
+const passwordToggle=document.getElementById("showPassword");
+passwordToggle.addEventListener("click",()=>{
+  const input=signin.elements.password,visible=input.type==="password";
+  input.type=visible?"text":"password";
+  passwordToggle.setAttribute("aria-label",visible?"Hide password":"Show password");
+});
+signin.addEventListener("submit",event=>{
+  event.preventDefault();
+  const email=signin.elements.email.value.trim(),password=signin.elements.password.value;
+  const alert=document.getElementById("signinAlert");
+  if(!patterns.email.test(email)||!password){alert.textContent="Please enter a valid email and password.";return;}
+  const saved=JSON.parse(localStorage.getItem("studysphere-demo-credentials")||"null");
+  if(saved&&saved.email===email&&saved.password===password){alert.textContent="";showPage("dashboard");setWelcome();}
+  else alert.textContent=saved?"Those details do not match this browser's demo account.":"No demo account found. Create an account first.";
+});
+
+/* Dashboard profile, tasks and saved planner */
+function setWelcome(){
+  const profile=JSON.parse(localStorage.getItem("studysphere-profile")||"null");
+  document.getElementById("firstName").textContent=profile?.name?.trim().split(/\s+/)[0]||"friend";
+}
+setWelcome();
+const taskList=document.getElementById("taskList");
+const taskKey="studysphere-tasks";
+let savedTasks=JSON.parse(localStorage.getItem(taskKey)||"null");
+if(savedTasks){
+  savedTasks.forEach(task=>{
+    const li=document.createElement("li"),box=document.createElement("input"),label=document.createElement("span");
+    box.type="checkbox";box.checked=task.done;label.textContent=task.text;li.append(box,label);taskList.append(li);
+  });
+}
+function updateTasks(){
+  const rows=[...taskList.querySelectorAll("li")];
+  rows.forEach(row=>row.classList.toggle("done",row.querySelector("input").checked));
+  const done=rows.filter(row=>row.querySelector("input").checked).length;
+  document.getElementById("taskCount").textContent=done+" / "+rows.length;
+  localStorage.setItem(taskKey,JSON.stringify(rows.map(row=>({text:row.querySelector("span").textContent,done:row.querySelector("input").checked}))));
+}
+taskList.addEventListener("change",updateTasks);updateTasks();
+document.getElementById("addTask").addEventListener("submit",event=>{
+  event.preventDefault();const input=document.getElementById("newTask"),text=input.value.trim();if(!text)return;
+  const li=document.createElement("li"),box=document.createElement("input"),label=document.createElement("span");
+  box.type="checkbox";label.textContent=text;li.append(box,label);taskList.append(li);input.value="";updateTasks();
+});
+
+/* Focus timer */
+let seconds=25*60,timer=null;
+function showTime(){document.getElementById("timer").textContent=String(Math.floor(seconds/60)).padStart(2,"0")+":"+String(seconds%60).padStart(2,"0");}
+document.getElementById("timerStart").addEventListener("click",event=>{
+  if(timer){clearInterval(timer);timer=null;event.currentTarget.textContent="Resume focus";return;}
+  event.currentTarget.textContent="Pause session";
+  timer=setInterval(()=>{seconds--;showTime();if(seconds<=0){clearInterval(timer);timer=null;event.currentTarget.textContent="Start focus";}},1000);
+});
+document.getElementById("timerReset").addEventListener("click",()=>{
+  clearInterval(timer);timer=null;seconds=25*60;showTime();document.getElementById("timerStart").textContent="Start focus";
+});
+
+/* Calculator: parses arithmetic safely without eval() */
+let expression="",finished=false;
+const display=document.getElementById("display");
+function calculate(source){
+  const tokens=source.match(/(?:\d+\.?\d*|\.\d+)|[+*/-]/g);
+  if(!tokens||tokens.join("")!==source)throw Error("Invalid expression");
+  const values=[],ops=[],priority={"+":1,"-":1,"*":2,"/":2};
+  let needNumber=true;
+  for(const token of tokens){
+    if(/^(?:\d+\.?\d*|\.\d+)$/.test(token)){
+      if(!needNumber)throw Error("Invalid expression");
+      values.push(Number(token));needNumber=false;
+    }else{
+      if(needNumber){if(token==="-"||token==="+")values.push(0);else throw Error("Invalid expression");}
+      while(ops.length&&priority[ops.at(-1)]>=priority[token])apply();
+      ops.push(token);needNumber=true;
+    }
+  }
+  if(needNumber)throw Error("Invalid expression");
+  while(ops.length)apply();
+  if(values.length!==1||!Number.isFinite(values[0]))throw Error("Invalid expression");
+  return String(Number(values[0].toPrecision(10)));
+  function apply(){
+    const op=ops.pop(),b=values.pop(),a=values.pop();
+    if(op==="/"&&b===0)throw Error("Cannot divide by zero");
+    values.push(op==="+"?a+b:op==="-"?a-b:op==="*"?a*b:a/b);
+  }
+}
+document.querySelectorAll(".keys button").forEach(button=>button.addEventListener("click",()=>{
+  const key=button.dataset.key;
+  if(key==="C"){expression="";finished=false;display.value="0";return;}
+  if(key==="="){
+    try{expression=calculate(expression);display.value=expression;finished=true;}
+    catch(error){display.value=error.message;expression="";finished=true;}
+    return;
+  }
+  if(finished){expression="";finished=false;}
+  if(/[+*/-]/.test(key)&&/[+*/-]$/.test(expression))expression=expression.slice(0,-1);
+  if(expression.length<30)expression+=key;
+  display.value=expression;
+}));
+
+/* Floating keyword chatbot with automatic log scrolling */
+const chat=document.getElementById("chat"),chatLog=document.getElementById("chatLog");
+const chatFab=document.getElementById("chatFab");
+function toggleChat(open){chat.hidden=!open;chatFab.setAttribute("aria-expanded",String(open));if(open)document.getElementById("chatInput").focus();}
+chatFab.addEventListener("click",()=>toggleChat(chat.hidden));
+document.getElementById("closeChat").addEventListener("click",()=>toggleChat(false));
+const replies=[
+  [/hello|hi|hey/i,"Hi! What would make studying feel easier today?"],
+  [/plan|schedule|organ/i,"Choose three priorities, then give each one a small time block. You can add tasks in the planner."],
+  [/focus|concentrat|distract/i,"Try one 25-minute session. Put away one distraction and pick one task."],
+  [/motivat|tired|stuck/i,"Try two minutes on the smallest next step. Starting gently still counts."],
+  [/break|rest|stress/i,"A short break is part of good studying. Stretch, drink water and rest your eyes."],
+  [/calculator|math/i,"Use the dashboard calculator for +, −, × and ÷. It protects against dividing by zero."]
+];
+function addMessage(text,kind){
+  const message=document.createElement("div");message.className="msg "+kind+"-msg";message.textContent=text;chatLog.append(message);chatLog.scrollTop=chatLog.scrollHeight;
+}
+document.getElementById("chatForm").addEventListener("submit",event=>{
+  event.preventDefault();const input=document.getElementById("chatInput"),text=input.value.trim();if(!text)return;
+  addMessage(text,"user");input.value="";
+  const match=replies.find(([pattern])=>pattern.test(text));
+  setTimeout(()=>addMessage(match?match[1]:"I can help with planning, focus, motivation and breaks. Try asking me how to focus.","bot"),180);
+});
+</script>
+</body>
+</html>
